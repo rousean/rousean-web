@@ -1,0 +1,11 @@
+<div>
+  <div>
+    {{name}}
+  </div>
+  <div>
+    {{age}}
+  </div>
+  <div>
+    {{love}} 
+  </div>
+</div>
