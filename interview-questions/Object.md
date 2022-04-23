@@ -65,12 +65,12 @@ console.log(b) // String { "abc" }
 
 #### 1. Object.create()
 
-**功能**：使用指定的原型对象和属性创建一个新对象
+**功能：**使用指定的原型对象和属性创建一个新对象
 
 **语法**：`Object.create(proto [, propertiesObject])`
 
 - proto：新创建对象的原型对象
-- propertiesObject：描述对象, 可选，如果没有指定为 undefined，则是要添加到新创建对象的`不可枚举属性`(对象的属性描述符以及相应的属性名称,这些属性对应Object.defineProperties()的第二个数)
+- propertiesObject：描述对象, 可选，如果没有指定为 undefined，则是要添加到新创建对象的`不可枚举属性`(对象的属性描述符以及相应的属性名称,这些属性对应Object.defineProperties()的第二个参数)
 
 **返回**：一个新对象，带着指定的原型对象和属性
 
@@ -105,18 +105,18 @@ console.log(son2.__proto__ === Father.prototype) // true
 
 #### 2. Object.assign()
 
-**功能**：将一个或多个源对象的所有**可枚举属性**的值复制到目标对象
+**功能：**将一个或多个源对象的所有**可枚举属性**的值复制到目标对象
 
 **语法：**`Object.assign(target, ...sources)`
 
 - target: 目标对象
 - sources: 源对象
 
-**返回：**目标对象
+**返回:** 目标对象
 
-当目标对象中的属性和方法的键名与源对象相同时，则会被覆盖。
+当目标对象中的属性和方法的键名与源对象相同时，则会被覆盖
 
-该方法只会拷贝源对象自身可枚举的属性/方法到目标对象，且为**浅拷贝**。
+该方法只会拷贝源对象自身可枚举的属性/方法到目标对象，且为浅拷贝
 
 调用该方法时会使用源对象的[[Get]]和目标对象的[[Set]]，因此会调用相关的getter和setter。所以该方法不仅仅是单纯的复制或定义新的属性/方法，还有分配属性/方法。当合并源包含getter时，不适合将新属性合并到原型之中
 
@@ -193,7 +193,7 @@ console.log(object) // {0: "a", 1: "b", 2: "c"}
 - prop: 要定义或修改的属性的名称或Symbol
 - descriptor: 要定义或修改的属性的描述符
 
-**返回：**进行定义/修改属性的对象
+**返回:** 进行定义/修改属性的对象
 
 对象中的属性描述符主要分为两种：`数据描述符`和`存储描述符`，这两种描述符都是对象。一个描述符只能为两者其中之一，不能同时是两者。
 
@@ -302,14 +302,14 @@ console.log(obj) // {test1: 123, test2: 123}
 
 #### 5. Object.getOwnPropertyDescriptor()
 
-**功能：查看对象上的自有属性**对应的属性描述符
+**功能：**查看对象上的自有属性对应的属性描述符
 
 **语法：**`Object.getOwnPropertyDescriptor(obj, prop)`
 
 - obj: 要查看的对象
 - prop：要查看的属性名
 
-**返回：**如果指定的属性存在于对象上，则返回其属性描述符对象（property descriptor），否则返回 undefined。
+**返回：**如果指定的属性存在于对象上，则返回其属性描述符对象(property descriptor)，否则返回 undefined
 
 ```javascript
 let descriptor = Object.getOwnPropertyDescriptor(obj, 'test1')
@@ -324,7 +324,7 @@ console.log(descriptor) // undefined
 
 #### 6. Object.getOwnPropertyNames()
 
-**功能：**返回一个由指定对象的所有自身属性的属性名（**包括不可枚举属性但不包括Symbol值作为名称的属性）**组成的数组。
+**功能：**返回一个由指定对象的所有自身属性的属性名（**包括不可枚举属性但不包括Symbol值作为名称的属性）**组成的数组
 
 **语法：**`Object.getOwnPropertyNames(obj)`
 
@@ -506,7 +506,7 @@ console.log(b.__proto__ === prototypeObj) // true
 
 - 检测的对象
 
-**返回：**是否可拓展的结果，布尔类型；
+**返回：**是否可拓展的结果，布尔类型
 
 `新对象默认是可拓展的`。使用`preventExtensions() seal() freeze()`方法都可以标记一个对象为不可拓展
 
@@ -533,7 +533,7 @@ delete newObj.b // 可删除已有属性
 
 - obj: 要检测的对象
 
-**返回：**是否被冻结的结果，布尔类型；
+**返回：**是否被冻结的结果，布尔类型
 
 ```javascript
 let newObj = { a: 'a' }
@@ -566,7 +566,7 @@ console.log(sealed) // true,冻结对象同时也是密封的对象
 
 - obj: 要遍历的对象
 
-**返回：**是否被密封的结果，布尔类型；
+**返回：**是否被密封的结果，布尔类型
 
 ```javascript
 let newObj = { a: 'a' }

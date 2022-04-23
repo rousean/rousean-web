@@ -7,27 +7,6 @@
     <title>Document</title>
   </head>
   <body>
-    <!-- <script src="./Object相关整理.js"></script> -->
-    <script>
-      let obj1 = {
-        a: 0, // 基本数据类型
-        b: {
-          // 引用数据类型
-          c: 0,
-        },
-      }
-      let obj2 = Object.assign({}, obj1)
-      console.log(obj2) // { a: 0, b: { c: 0}}
-      // 改变a的值，将不会相互影响
-      obj1.a = 1
-      console.log(obj2) // { a: 0, b: { c: 0}}
-      obj2.a = 2
-      console.log(obj1) // { a: 1, b: { c: 0}}
-
-      // 改变b的值，将会相互影响
-      obj1.b.c = 1
-      console.log(obj1) // { a: 1, b: { c: 1}}
-      console.log(obj2) // { a: 2, b: { c: 1}}
-    </script>
+    <script src="./预编译.js"></script>
   </body>
 </html>
