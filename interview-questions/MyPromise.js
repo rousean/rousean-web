@@ -33,6 +33,13 @@ export class MyPromise {
   }
 
   then(onFulfilled, onRejected) {
+    onFulfilled = typeof onFulfilled === "function" ? onFulfilled : value => value
+    onRejected =
+      typeof onRejected === "function"
+        ? onRejected
+        : reason => {
+            throw reason
+          }
     let promise2 = new MyPromise((resolve, reject) => {
       if (this.states === "fulfilled") {
         setTimeout(() => {
@@ -75,18 +82,51 @@ export class MyPromise {
     })
     return promise2
   }
+
+  catch(errorCallback) {
+    return this.then(null, errorCallback)
+  }
 }
 
 function resolvePromise(promise2, x, resolve, reject) {
-  //
+  let called = false
   if (promise2 === x) {
     reject(new Error("Chaining cycle detected for promise #<Promise>"))
   }
   if ((typeof x === "object" && x !== null) || typeof x === "function") {
-    let then = x.then
-    if (typeof then === "function") {
-    } else {
-      resolve(x)
+    // then是函数的情况
+    try {
+      let then = x.then
+      if (typeof then === "function") {
+        then.call(
+          x,
+          y => {
+            if (called) {
+              return
+            }
+            called = true
+            resolvePromise(promise2, y, resolve, reject)
+          },
+          r => {
+            if (called) {
+              return
+            }
+            called = true
+            resolvePromise(promise2, r, resolve, reject)
+          }
+        )
+      } else {
+        resolve(x)
+      }
+    } catch (e) {
+      if (called) {
+        return
+      }
+      called = true
+      reject(e)
     }
+  } else {
+    // then是普通值
+    resolve(x)
   }
 }

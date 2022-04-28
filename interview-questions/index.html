@@ -12,22 +12,18 @@
       let p = new MyPromise((resolve, reject) => {
         resolve(1)
       })
-      let p2 = p.then(
-        value => {
-          return p2
-        },
-        reason => {
+        .then(console.log(1))
+        .then(
+          value => {
+            throw new Error("Could not resolve")
+          },
+          reason => {
+            console.log(reason)
+          }
+        )
+        .catch(reason => {
           console.log(reason)
-        }
-      )
-      p2.then(
-        value => {
-          console.log(value)
-        },
-        reason => {
-          console.log(reason)
-        }
-      )
+        })
 
       // console.log(p)
     </script>
