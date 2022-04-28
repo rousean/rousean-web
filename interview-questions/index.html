@@ -7,6 +7,29 @@
     <title>Document</title>
   </head>
   <body>
-    <script src="./预编译.js"></script>
+    <script type="module">
+      import { MyPromise } from "./MyPromise.js"
+      let p = new MyPromise((resolve, reject) => {
+        resolve(1)
+      })
+      let p2 = p.then(
+        value => {
+          return p2
+        },
+        reason => {
+          console.log(reason)
+        }
+      )
+      p2.then(
+        value => {
+          console.log(value)
+        },
+        reason => {
+          console.log(reason)
+        }
+      )
+
+      // console.log(p)
+    </script>
   </body>
 </html>
