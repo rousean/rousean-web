@@ -33,3 +33,10 @@ function add(a: Types, b: Types) {
 }
 const result = add("Semlinker", " Kakuqo")
 result.split(" ")
+
+interface ICat {
+  name: string
+  eat(): void
+}
+
+// function cat(): ICat {}
