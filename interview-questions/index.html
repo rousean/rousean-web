@@ -9,23 +9,57 @@
   <body>
     <script type="module">
       import { MyPromise } from "./MyPromise.js"
-      let p = new MyPromise((resolve, reject) => {
-        resolve(1)
-      })
-        .then(console.log(1))
-        .then(
-          value => {
-            throw new Error("Could not resolve")
-          },
-          reason => {
-            console.log(reason)
-          }
-        )
-        .catch(reason => {
-          console.log(reason)
+      function all() {
+        let index = 0
+        Promise.resolve(1).then(value => {
+          console.log(value)
+          ++index
+          console.log("a", index)
         })
+        Promise.resolve(
+          new Promise((resolve, reject) => {
+            setTimeout(() => resolve(22), 1000)
+          })
+        ).then(value => {
+          console.log(value)
+          ++index
+          console.log("a", index)
+        })
+        Promise.resolve(3).then(value => {
+          console.log(value)
+          ++index
+          console.log("a", index)
+        })
+      }
+      all()
 
+      // var promise1 = new Promise((resolve, reject) => {
+      //   resolve(3)
+      // })
+      // var promise2 = 42
+      // var promise3 = new Promise(function (resolve, reject) {
+      //   setTimeout(() => {
+      //     resolve(33)
+      //   }, 2000)
+      // })
+
+      // Promise.all([promise1, promise2, promise3]).then(
+      //   function (values) {
+      //     console.log(values) //[3, 42, 'foo']
+      //   },
+      //   err => {
+      //     console.log(err)
+      //   }
+      // )
+
+      // var p = Promise.all([]) // will be immediately resolved
+      // var p2 = Promise.all([1337, "hi"]) // non-promise values will be ignored, but the evaluation will be done asynchronously
       // console.log(p)
+      // console.log(p2)
+      // setTimeout(function () {
+      //   console.log("the stack is now empty")
+      //   console.log(p2)
+      // })
     </script>
   </body>
 </html>
