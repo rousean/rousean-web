@@ -7,6 +7,7 @@ let employee = {
     jobLevel: "senior",
   },
 }
+
 String.prototype.render = function (obj) {
   // return this.replace(/\$\{(.*?)\}/g, (item, key) => eval(`obj.${key}`))
   with (obj) {
