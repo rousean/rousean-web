@@ -18,11 +18,14 @@ for (let i = 0; i < 10000; i++) {
 
 </script>
 
-<style>
+<style lang='scss' scoped>
 .list {
   width: 300px;
   height: 600px;
   border: 1px solid #000;
   overflow: scroll;
+  div {
+    font-size: 26px;
+  }
 }
 </style>
